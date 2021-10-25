@@ -1,0 +1,19 @@
+{
+  "properties": [
+    {
+      "name": "server",
+      "type": "java.lang.String",
+      "description": "Description for server."
+    },
+    {
+      "name": "register-with-eureka",
+      "type": "java.lang.String",
+      "description": "Description for register-with-eureka."
+    },
+    {
+      "name": "fetch-registry",
+      "type": "java.lang.String",
+      "description": "Description for fetch-registry."
+    },
+
+  ] }

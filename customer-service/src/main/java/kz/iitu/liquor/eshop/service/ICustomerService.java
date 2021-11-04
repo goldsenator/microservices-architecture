@@ -1,15 +1,15 @@
-package kz.iitu.liquor.eshop.service;
+package kz.app.cart.shopping.service;
 
-import kz.iitu.liquor.eshop.dto.CustomerDTO;
-import kz.iitu.liquor.eshop.model.Customer;
+import kz.app.cart.shopping.dto.CustomerDTO;
+import kz.app.cart.shopping.model.Customer;
+
 import java.util.List;
 
-    public interface ICustomerService {
+public interface ICustomerService {
 
-        Customer save(CustomerDTO customerDTO);
-        void deleteById(Long id);
-        Customer getById(Long id);
-        List<Customer> getAll();
-    }
+    Customer save(CustomerDTO customerDTO);
+    void deleteById(Long id);
+    Customer getById(Long id);
 
-
+    List<Customer> getAll();
+}

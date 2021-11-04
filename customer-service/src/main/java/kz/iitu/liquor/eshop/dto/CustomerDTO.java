@@ -1,5 +1,6 @@
-package kz.iitu.liquor.eshop.dto;
+package kz.app.cart.shopping.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
@@ -18,27 +19,31 @@ public class CustomerDTO {
     private String customerCode;
 
     @JsonProperty("customerName")
-    @ApiModelProperty(required = true, example = "Adilet", name = "Customer name")
+    @ApiModelProperty(required = true, example = "Assel", name = "Customer name")
     private String customerName;
 
-    @JsonProperty("photo")
-    @ApiModelProperty(example = "Adilet", name = "Customer name")
+    @JsonProperty("avatar")
+    @ApiModelProperty(example = "Assel", name = "Customer name")
     private byte[] avatar;
 
     @JsonProperty("emailAddress")
-    @ApiModelProperty(required = true, example = "customer@icloud.com", name = "Customer email")
+    @ApiModelProperty(required = true, example = "aselek.m.s@gmail.com", name = "Customer email")
     private String emailAddress;
 
-    @JsonProperty("contacting")
-    @ApiModelProperty(example = "87005200051", name = "Customer contact number")
+    @JsonProperty("contactNumber")
+    @ApiModelProperty(example = "+77072001521", name = "Customer contact number")
     private String contactNumber;
 
     @JsonProperty("completeAddress")
-    @ApiModelProperty(example = "Astana", name = "Customer address")
+    @ApiModelProperty(example = "Almaty, Manas 66", name = "Customer address")
     private String completeAddress;
 
+    @JsonProperty("username")
+    @ApiModelProperty(required = true, example = "AsselSultan", name = "Customer username")
+    private String username;
+
     @JsonProperty("password")
-    @ApiModelProperty(required = true, example = "password", name = "Customer password")
+    @ApiModelProperty(required = true, example = "hello", name = "Customer password")
     private String password;
 
 }

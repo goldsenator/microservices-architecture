@@ -1,4 +1,4 @@
-package kz.iitu.liquor.eshop.dto;
+package kz.app.cart.shopping.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -16,6 +16,6 @@ public class CartProductCategoryDTO {
     Long id;
 
     @JsonProperty("categoryName")
-    @ApiModelProperty(example = "1", name = "Cart product category name")
+    @ApiModelProperty(example = "EXAMPLE", name = "Cart product category name")
     private String categoryName;
 }

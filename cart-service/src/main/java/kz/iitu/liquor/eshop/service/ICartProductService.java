@@ -1,7 +1,7 @@
-package kz.iitu.liquor.eshop.service;
+package kz.app.cart.shopping.service;
 
-import kz.iitu.liquor.eshop.dto.CartProductDTO;
-import kz.iitu.liquor.eshop.model.CartProduct;
+import kz.app.cart.shopping.dto.CartProductDTO;
+import kz.app.cart.shopping.model.CartProduct;
 
 import java.util.List;
 

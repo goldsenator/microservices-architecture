@@ -1,9 +1,9 @@
-package kz.iitu.liquor.eshop.service.impl;
+package kz.app.cart.shopping.service.impl;
 
-import kz.iitu.liquor.eshop.dto.CartCategoryDTO;
-import kz.iitu.liquor.eshop.model.CartCategory;
-import kz.iitu.liquor.eshop.repository.CartCategoryRepository;
-import kz.iitu.liquor.eshop.service.ICartCategoryService;
+import kz.app.cart.shopping.dto.CartCategoryDTO;
+import kz.app.cart.shopping.model.CartCategory;
+import kz.app.cart.shopping.repository.CartCategoryRepository;
+import kz.app.cart.shopping.service.ICartCategoryService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;

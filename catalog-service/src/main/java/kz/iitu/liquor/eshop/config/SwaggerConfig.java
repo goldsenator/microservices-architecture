@@ -1,4 +1,4 @@
-package kz.iitu.liquor.eshop.config;
+package kz.app.cart.shopping.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

@@ -1,4 +1,4 @@
-package kz.iitu.liquor.eshop.dto;
+package kz.app.cart.shopping.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -12,19 +12,19 @@ import lombok.Data;
 public class CartProductDTO {
 
     @JsonProperty("id")
-    @ApiModelProperty(required = true, example = "5", name = "5")
+    @ApiModelProperty(required = true, example = "1", name = "Cart product id")
     Long id;
 
     @JsonProperty("code")
-    @ApiModelProperty(example = "444", name = "444")
+    @ApiModelProperty(example = "DHN", name = "Code product")
     private String code;
 
     @JsonProperty("name")
-    @ApiModelProperty(required = true, example = "222", name = "222")
+    @ApiModelProperty(required = true, example = "T-shift", name = "Name of product")
     private String name;
 
     @JsonProperty("detail")
-    @ApiModelProperty(example = "111", name = "111")
+    @ApiModelProperty(example = "good", name = "detail product")
     private String detail;
 
 }

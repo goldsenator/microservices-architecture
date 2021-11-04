@@ -1,4 +1,4 @@
-package kz.iitu.liquor.eshop.dto;
+package kz.app.cart.shopping.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.annotations.ApiModelProperty;
@@ -18,7 +18,7 @@ public class CatalogDTO {
     private String customerCode;
 
     @JsonProperty("customerName")
-    @ApiModelProperty(required = true, example = "clients", name = "Customer name")
+    @ApiModelProperty(required = true, example = "Erasyl", name = "Customer name")
     private String customerName;
 
 }

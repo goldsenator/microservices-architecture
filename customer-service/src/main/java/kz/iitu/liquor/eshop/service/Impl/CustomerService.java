@@ -1,13 +1,12 @@
-package kz.iitu.liquor.eshop.service.Impl;
+package kz.app.cart.shopping.service.impl;
 
-import kz.iitu.liquor.eshop.dto.CustomerDTO;
-import kz.iitu.liquor.eshop.model.Customer;
-import kz.iitu.liquor.eshop.repository.CustomerRepository;
-import kz.iitu.liquor.eshop.service.ICustomerService;
+import kz.app.cart.shopping.dto.CustomerDTO;
+import kz.app.cart.shopping.model.Customer;
+import kz.app.cart.shopping.repository.CustomerRepository;
+import kz.app.cart.shopping.service.ICustomerService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 
 @Service
@@ -17,11 +16,56 @@ public class CustomerService implements ICustomerService {
 
     private final CustomerRepository customerRepository;
 
-    @Override
-    public Customer save(CustomerDTO customerDTO) {
-        Customer customer;
+    //    @Value("${service.order.url}")
+//    String orderApi;
 
-        log.info("Start save method");
+    final String orderApi = "http://localhost:8086/order/";
+
+
+    private Object runGetMethod(String url, Object object) {
+        log.info("get method url : " + url);
+        RestTemplate restTemplate = new RestTemplate();
+        HttpHeaders headers = new HttpHeaders();
+        headers.set("Accept", "application/json");
+        HttpEntity entity = new HttpEntity(headers);
+        try {
+            HttpEntity<?> responseEntity = restTemplate.exchange(
+                    url,
+                    HttpMethod.GET,
+                    entity,
+                    object.getClass());
+            log.info("responseEntity in GET METHOD = {} ", responseEntity.getBody());
+            return responseEntity.getBody();
+        } catch (Exception e) {
+            log.error("Exception in GET method : " + e.getLocalizedMessage());
+            return null;
+        }
+    }
+
+    private Object runPostMethod(String url, Object body, Object object) {
+        log.info("post method url : " + url);
+        RestTemplate restTemplate = new RestTemplate();
+        HttpHeaders headers = new HttpHeaders();
+        headers.set("Accept", "application/json");
+        HttpEntity entity = new HttpEntity(body, headers);
+        try {
+            HttpEntity<?> responseEntity = restTemplate.exchange(
+                    url,
+                    HttpMethod.POST,
+                    entity,
+                    object.getClass());
+            log.info("responseEntity in POST METHOD = {} ", responseEntity.getBody());
+            return responseEntity.getBody();
+        } catch (Exception e) {
+            log.error("Exception in POST method : " + e.getLocalizedMessage());
+            return null;
+        }
+    }
+
+     @Override
+      public Customer save(CustomerDTO customerDTO) {
+         Customer customer;
+         log.info("Start save method");
 
         if (customerDTO.getId() == null) {
             log.info("new customer");
@@ -55,14 +99,34 @@ public class CustomerService implements ICustomerService {
         return savedCustomer;
     }
 
+    public Customer getCustomerInformationByIdFallback(Long id){
+        Customer customer = new Customer();
+        customer.setName
+    }
     @Override
     public void deleteById(Long id) {
         customerRepository.deleteById(id);
     }
 
     @Override
+    @HystrixCommand(
+            fallbackMethod = "getCustomerInformationByIdFallback",
+            threadPoolKey = "getById",
+            threadPoolProperties = {
+                    @HystrixProperty(name="coreSize", value="100"),
+                    @HystrixProperty(name="maxQueueSize", value="50"),
+            }
+    )
     public Customer getById(Long id) {
         return customerRepository.getById(id);
+    }
+
+    public Customer getCustomerInformationByIdFallback(Long id){
+        Customer customer = new Customer();
+        customer.setId(0L);
+        customer.setCustomerName("CustomerName is not available:Service Unavailable");
+        customer.setCustomerCode("CustomerCode is not available:Service Unavailable");
+        return customer;
     }
 
     @Override

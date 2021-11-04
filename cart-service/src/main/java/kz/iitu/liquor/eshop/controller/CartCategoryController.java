@@ -1,8 +1,8 @@
-package kz.iitu.liquor.eshop.controller;
+package kz.app.cart.shopping.controller;
 
-import kz.iitu.liquor.eshop.dto.CartCategoryDTO;
-import kz.iitu.liquor.eshop.model.CartCategory;
-import kz.iitu.liquor.eshop.service.ICartCategoryService;
+import kz.app.cart.shopping.dto.CartCategoryDTO;
+import kz.app.cart.shopping.model.CartCategory;
+import kz.app.cart.shopping.service.ICartCategoryService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

@@ -1,14 +1,9 @@
 package kz.iitu.eshop.catalogservice.service.impl;
 
 
-import kz.iitu.eshop.shopping.dto.CustomerDTO;
-import kz.iitu.eshop.shopping.model.Customer;
-import kz.iitu.eshop.shopping.repository.CustomerRepository;
-import kz.iitu.eshop.shopping.service.ICustomerService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 
 @Service
@@ -18,6 +13,8 @@ public class CustomerService implements ICustomerService {
 
     private final CustomerRepository customerRepository;
 
+    //    @Value("${service.order.url}")
+//    String orderApi;
 
     final String orderApi = "http://localhost:8086/order/";
 
@@ -99,14 +96,34 @@ public class CustomerService implements ICustomerService {
         return savedCustomer;
     }
 
+    public Customer getCustomerInformationByIdFallback(Long id){
+        Customer customer = new Customer();
+        customer.setName
+    }
     @Override
     public void deleteById(Long id) {
         customerRepository.deleteById(id);
     }
 
     @Override
+    @HystrixCommand(
+            fallbackMethod = "getCustomerInformationByIdFallback",
+            threadPoolKey = "getById",
+            threadPoolProperties = {
+                    @HystrixProperty(name="coreSize", value="100"),
+                    @HystrixProperty(name="maxQueueSize", value="50"),
+            }
+    )
     public Customer getById(Long id) {
         return customerRepository.getById(id);
+    }
+
+    public Customer getCustomerInformationByIdFallback(Long id){
+        Customer customer = new Customer();
+        customer.setId(0L);
+        customer.setCustomerName("CustomerName is not available:Service Unavailable");
+        customer.setCustomerCode("CustomerCode is not available:Service Unavailable");
+        return customer;
     }
 
     @Override

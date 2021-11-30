@@ -1,25 +1,38 @@
 package kz.iitu.liquor.eshop.model;
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import javax.persistence.*;
-import java.io.Serializable;
+import org.hibernate.annotations.Entity;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.relational.core.mapping.Column;
+import org.springframework.data.relational.core.mapping.Table;
 
-@Table(name = "customer")
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Lob;
+import javax.persistence.SequenceGenerator;
+
+@Table(name = "_customer")
 @Entity
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class Customer implements Serializable {
+public class Customer {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO,  generator = "customergenerator")
-    @SequenceGenerator(name = "customername", sequenceName = "customer_seq", allocationSize = 1)
+    @GeneratedValue(
+            strategy = GenerationType.AUTO,
+            generator = "customer_gen"
+    )
+    @SequenceGenerator(
+            name = "customer_gen",
+            sequenceName = "_customer_seq",
+            allocationSize = 1
+    )
     @Column(name = "customer_id")
-    private Long id;
+    private  id;
 
     @Column(name = "customer_code")
     private String customerCode;
@@ -28,17 +41,20 @@ public class Customer implements Serializable {
     private String customerName;
 
     @Lob
-    @Column(name = "photo")
-    private byte[] photo;
+    @Column(name = "avatar")
+    private byte[] avatar;
 
-    @Column(name = "email")
-    private String email;
+    @Column(name = "email_address")
+    private String emailAddress;
 
-    @Column(name = "phone")
-    private String phone;
+    @Column(name = "contact_number")
+    private String contactNumber;
 
-    @Column(name = "delivery_address")
-    private String deliveryAddress;
+    @Column(name = "complete_address")
+    private String completeAddress;
+
+    @Column(name = "username")
+    private String username;
 
     @Column(name = "password")
     private String password;
